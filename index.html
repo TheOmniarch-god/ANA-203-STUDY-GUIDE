@@ -390,12 +390,22 @@
         
         .quiz-section-title {
             color: var(--secondary);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+        
+        .quiz-subsection-title {
+            color: var(--primary);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .quiz-item {
@@ -433,7 +443,7 @@
 
         .quiz-item.open .quiz-answer {
             padding: 1.5rem;
-            max-height: 1200px; /* high limit to handle large content */
+            max-height: 1200px;
             border-top: 1px solid var(--border);
         }
 
@@ -448,7 +458,84 @@
             transform: rotate(180deg);
         }
 
-        /* Mark scheme breakdown list */
+        /* MCQ Styles */
+        .mcq-container {
+            background-color: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+
+        .mcq-question-text {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mcq-option {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            padding: 0.6rem 1rem;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            outline: none;
+            display: block;
+            width: 100%;
+        }
+
+        .mcq-option:hover {
+            background-color: #cbd5e1;
+        }
+
+        .mcq-option.correct {
+            background-color: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+            font-weight: 600;
+        }
+
+        .mcq-option.incorrect {
+            background-color: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+        }
+
+        .mcq-feedback {
+            margin-top: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .mcq-feedback.correct {
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .mcq-feedback.incorrect {
+            background-color: #fff5f5;
+            color: #9c0006;
+            border: 1px solid #ffd8d9;
+        }
+
+        /* Mark list styles */
         .mark-list {
             list-style-type: none;
             padding-left: 0;
@@ -811,12 +898,38 @@
                     </tbody>
                 </table>
                 
-                <!-- MODULE 1 QUIZ -->
+                <!-- MODULE 1 HYBRID QUIZ -->
                 <div class="quiz-section">
                     <div class="quiz-section-title">🧠 Module 1 Practice Quiz: Test Your Understanding</div>
                     
+                    <div class="quiz-subsection-title">Part A: Interactive Quick Check (MCQs)</div>
+                    
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q1. At which phase of division is the primary oocyte arrested from fetal life until puberty?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Prophase II occurs in Meiosis II, which only happens at and after ovulation.')">A) Prophase II</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Metaphase II is the arrest point of the secondary oocyte during ovulation.')">B) Metaphase II</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Primary oocytes enter Meiosis I prenatally and are arrested in the diplotene stage of Prophase I until puberty.')">C) Prophase I (diplotene stage)</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Anaphase I is not an arrest point in oogenesis.')">D) Anaphase I</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q2. Which cell type in the testes directly secretes testosterone under the influence of LH?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Sertoli cells are located inside the tubules, stimulated by FSH to support sperm development and secrete Inhibin and ABP.')">A) Sertoli cells</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Leydig cells (interstitial cells) are stimulated by LH to synthesize and secrete Testosterone.')">B) Leydig cells</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Spermatogonia are primitive germ cells, not endocrine cells.')">C) Spermatogonia</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Primordial germ cells are the precursors of gametes and do not secrete hormones.')">D) Primordial germ cells</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="quiz-subsection-title">Part B: Active Recall Flashcards</div>
+
                     <div class="quiz-item">
-                        <div class="quiz-question">Q1. What is the key biological and meiotic difference between Spermatogenesis and Spermiogenesis?</div>
+                        <div class="quiz-question">Q3. What is the key biological and meiotic difference between Spermatogenesis and Spermiogenesis?</div>
                         <div class="quiz-answer">
                             <p><strong>Spermatogenesis</strong> is the entire development process of transforming primitive diploid spermatogonia into mature haploid spermatozoa. It involves cell proliferation (mitosis) and reduction division (meiotic divisions).</p>
                             <p><strong>Spermiogenesis</strong> is strictly the final phase of spermatogenesis where round, immotile haploid spermatids undergo <strong>morphological maturation</strong> (forming the acrosome, condensing the nucleus, growing a flagellum, and shedding cytoplasm) to become motile spermatozoa. <strong>No cell divisions occur in spermiogenesis!</strong></p>
@@ -824,28 +937,10 @@
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q2. What is the Blood-Testis Barrier, what structure forms it, and why is it crucial?</div>
+                        <div class="quiz-question">Q4. What is the Blood-Testis Barrier, what structure forms it, and why is it crucial?</div>
                         <div class="quiz-answer">
                             <p>The <strong>Blood-Testis Barrier</strong> is a physiological barrier formed by <strong>tight junctions</strong> between adjacent <strong>Sertoli cells</strong> near the basement membrane of the seminiferous tubules.</p>
                             <p>It is crucial because haploid cells (secondary spermatocytes, spermatids, sperm) are immunologically foreign to the male's immune system, as they develop after the immune system has learned self-tolerance. Without this barrier, the immune system would produce anti-sperm antibodies, destroying the germ cells and causing autoimmune infertility.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q3. At which meiotic phases do primary and secondary oocytes arrest?</div>
-                        <div class="quiz-answer">
-                            <ul>
-                                <li><strong>Primary Oocyte:</strong> Arrests in <strong>Prophase I (specifically the diplotene/dictyotene stage)</strong> during fetal life, maintained by Oocyte Maturation Inhibitor (OMI). It remains arrested here until puberty.</li>
-                                <li><strong>Secondary Oocyte:</strong> Arrests in <strong>Metaphase II</strong> at ovulation. It will only complete Meiosis II if it is fertilized by a spermatozoon.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q4. Detail the endocrine feedback control of Leydig cells.</div>
-                        <div class="quiz-answer">
-                            <p>The hypothalamus secretes **GnRH**, which stimulates the anterior pituitary to secrete **LH** (Luteinizing Hormone).</p>
-                            <p>LH travels via the bloodstream to bind to receptors on **Leydig cells** in the testis interstitium, stimulating them to synthesize and secrete **Testosterone**. Testosterone supports spermatogenesis and male secondary sexual characteristics. It also acts on the hypothalamus and anterior pituitary in a negative feedback loop to suppress further GnRH and LH secretion.</p>
                         </div>
                     </div>
 
@@ -899,12 +994,38 @@
                     <li><strong>Hatching:</strong> On day 5, the blastocyst escapes ("hatches") from the rigid zona pellucida to allow increase in size and permit implantation.</li>
                 </ul>
                 
-                <!-- MODULE 2 QUIZ -->
+                <!-- MODULE 2 HYBRID QUIZ -->
                 <div class="quiz-section">
                     <div class="quiz-section-title">🧠 Module 2 Practice Quiz: Test Your Understanding</div>
                     
+                    <div class="quiz-subsection-title">Part A: Interactive Quick Check (MCQs)</div>
+                    
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q1. In which part of the uterine tube does fertilization normally occur?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The isthmus is the narrow part of the tube closest to the uterus.')">A) Isthmus</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The infundibulum is the funnel-shaped distal end with fimbriae.')">B) Infundibulum</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Fertilization normally occurs in the Ampulla, which is the widest and longest section of the Fallopian tube.')">C) Ampulla</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The uterine part is embedded within the wall of the uterus.')">D) Uterine part</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q2. Which reaction is responsible for preventing polyspermy during fertilization?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The acrosome reaction enables the sperm to penetrate the egg protective coats.')">A) Acrosome reaction</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The decidual reaction is the modification of the endometrium during implantation.')">B) Decidual reaction</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! The cortical reaction releases lysosomal enzymes that alter the zona pellucida composition to block polyspermy.')">C) Cortical reaction</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Capacitation is the conditioning phase of the sperm inside the female tract.')">D) Capacitation</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="quiz-subsection-title">Part B: Active Recall Flashcards</div>
+
                     <div class="quiz-item">
-                        <div class="quiz-question">Q1. What is sperm capacitation, and where does it occur?</div>
+                        <div class="quiz-question">Q3. What is sperm capacitation, and where does it occur?</div>
                         <div class="quiz-answer">
                             <p><strong>Capacitation</strong> is a 7-hour physiological conditioning phase that sperm must undergo to acquire fertilizing capability. It occurs within the <strong>female reproductive tract</strong> (primarily in the uterus and uterine tubes).</p>
                             <p>During capacitation, a glycoprotein coat and seminal plasma proteins are removed from the plasma membrane over the acrosomal region of the sperm, increasing its membrane permeability and motility.</p>
@@ -912,31 +1033,19 @@
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q2. What is the function of the Cortical and Zonular reactions?</div>
+                        <div class="quiz-question">Q4. What is the difference between a Morula and a Blastocyst?</div>
                         <div class="quiz-answer">
-                            <p>The function of the <strong>cortical and zonular reactions</strong> is to **prevent polyspermy** (fertilization of an oocyte by more than one sperm).</p>
-                            <p>When the first sperm membrane fuses with the oocyte, cortical granules inside the oocyte release lysosomal enzymes. These enzymes chemically alter the zona pellucida structure, destroying sperm receptor sites (ZP3) and rendering the zona completely impermeable to subsequent sperm.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q3. Trace the anatomical passage of the zygote from fertilization to the uterine cavity.</div>
-                        <div class="quiz-answer">
-                            <p>Fertilization occurs in the <strong>ampulla of the Fallopian tube</strong>. Over the next 3 to 4 days, the developing zygote undergoes cleavage as it is swept medially toward the uterus by ciliary action and muscular contractions of the tube wall. It enters the uterine cavity at the 12-16 cell stage as a solid <strong>morula</strong> on day 3-4.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q4. What is compaction and why is it important?</div>
-                        <div class="quiz-answer">
-                            <p><strong>Compaction</strong> occurs after the third cleavage division (8-cell stage). Blastomeres maximize physical contact, flatten, and form tight junctions. This seals the interior of the embryonic sphere from the outside environment. It is important because it establishes the primary cell polarity that separates the inner cells (future embryoblast) from the outer cells (future trophoblast).</p>
+                            <ul>
+                                <li><strong>Morula:</strong> A solid ball of 12 to 16 blastomeres formed around Day 3-4 post-fertilization, with no internal fluid cavity.</li>
+                                <li><strong>Blastocyst:</strong> Formed around Day 4-5 when fluid enters the compacted morula to create a central cavity (blastocoele). It features two distinct cell lineages: the inner **embryoblast** and the outer **trophoblast**.</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="quiz-item">
                         <div class="quiz-question">Q5. Explain the process of blastocyst "hatching".</div>
                         <div class="quiz-answer">
-                            <p>On Day 5, the blastocyst must escape or **hatch** from the surrounding rigid, non-expanding **zona pellucida**. It accomplishes this by secreting proteolytic enzymes that digest a small pore in the zona, through which the blastocyst squeezes out. Hatching is essential because it allows the blastocyst to enlarge and directly contact the endometrial lining for implantation.</p>
+                            <p>On Day 5, the blastocyst must escape or <strong>hatch</strong> from the surrounding rigid, non-expanding <strong>zona pellucida</strong>. It accomplishes this by secreting proteolytic enzymes that digest a small pore in the zona, through which the blastocyst squeezes out. Hatching is essential because it allows the blastocyst to enlarge and directly contact the endometrial lining for implantation.</p>
                         </div>
                     </div>
                 </div>
@@ -1013,12 +1122,38 @@
                     <li><strong>Tertiary Villi:</strong> Blood vessels differentiate inside the mesodermal core, establishing connection with the embryonic cardiovascular system (appears end of Week 3).</li>
                 </ol>
                 
-                <!-- MODULE 3 QUIZ -->
+                <!-- MODULE 3 HYBRID QUIZ -->
                 <div class="quiz-section">
                     <div class="quiz-section-title">🧠 Module 3 Practice Quiz: Test Your Understanding</div>
                     
+                    <div class="quiz-subsection-title">Part A: Interactive Quick Check (MCQs)</div>
+                    
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q1. Which cells are responsible for secreting Human Chorionic Gonadotropin (hCG)?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The cytotrophoblast consists of mononucleated cells that lack endocrine-secreting pathways.')">A) Cytotrophoblast</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! The invasive syncytiotrophoblast synthesizes and secretes hCG, preserving the corpus luteum.')">B) Syncytiotrophoblast</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The epiblast forms the tissues of the embryo proper.')">C) Epiblast</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The hypoblast forms the extraembryonic endoderm lining the yolk sac.')">D) Hypoblast</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q2. Where does an ectopic pregnancy most commonly occur?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Cervical implantation is rare and extremely dangerous.')">A) Cervix</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Over 95% of ectopic pregnancies occur in the Fallopian tube, specifically inside the ampulla.')">B) Ampulla of the Fallopian tube</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Ovarian implantation represents less than 1% of ectopic pregnancies.')">C) Ovary</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Abdominal/peritoneal implantation is exceptionally rare.')">D) Peritoneal cavity</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="quiz-subsection-title">Part B: Active Recall Flashcards</div>
+
                     <div class="quiz-item">
-                        <div class="quiz-question">Q1. List the structural layers and cavities that represent the "Week of 2s" in Week 2 of development.</div>
+                        <div class="quiz-question">Q3. List the structural layers and cavities that represent the "Week of 2s" in Week 2 of development.</div>
                         <div class="quiz-answer">
                             <ol>
                                 <li>The <strong>Trophoblast</strong> splits into the <strong>Cytotrophoblast</strong> and <strong>Syncytiotrophoblast</strong>.</li>
@@ -1030,17 +1165,7 @@
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q2. Contrast the Cytotrophoblast and Syncytiotrophoblast structurally and functionally.</div>
-                        <div class="quiz-answer">
-                            <ul>
-                                <li><strong>Cytotrophoblast:</strong> Structural inner layer of single mononucleated cells with distinct borders. It undergoes active mitosis to supply cells that fuse into the expanding outer layer.</li>
-                                <li><strong>Syncytiotrophoblast:</strong> Structural outer multinucleated protoplasmic mass with no cell boundaries. It is non-mitotic and highly invasive. Functionally, it secretes proteolytic enzymes to digest maternal tissue during implantation, establishes uteroplacental circulation via lacunae, and secretes <strong>hCG</strong> to support the corpus luteum.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q3. What is the Decidual Reaction, and what are its three anatomical subdivisions?</div>
+                        <div class="quiz-question">Q4. What is the Decidual Reaction, and what are its three anatomical subdivisions?</div>
                         <div class="quiz-answer">
                             <p>The <strong>Decidual Reaction</strong> is the progesterone-induced structural and biochemical modification of the uterine endometrium during implantation. Endometrial stromal cells swell, accumulate glycogen and lipids, and tightly pack together to nourish the embryo and limit syncytiotrophoblast invasion.</p>
                             <p><strong>Subdivisions:</strong></p>
@@ -1049,14 +1174,6 @@
                                 <li><strong>Decidua Capsularis:</strong> Superficially covers the implanted embryo.</li>
                                 <li><strong>Decidua Parietalis:</strong> Lines the remaining, non-occupied uterine wall.</li>
                             </ol>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q4. What is an Ectopic Pregnancy, and what is its most common site?</div>
-                        <div class="quiz-answer">
-                            <p>An <strong>Ectopic Pregnancy</strong> is any extra-uterine implantation of the blastocyst. Its most common site is the <strong>ampulla of the Fallopian tube</strong> (95-97% of cases).</p>
-                            <p>Because the fallopian tube lacks the elastic muscle and vascular structures of the uterus, it cannot sustain a growing embryo. It is a surgical emergency due to the risk of tubal rupture, leading to catastrophic internal bleeding and maternal mortality.</p>
                         </div>
                     </div>
 
@@ -1140,46 +1257,52 @@
                     <li><strong>Transverse (Lateral) Folding:</strong> Driven by rapid growth of somites. It closes the body wall anteriorly, incorporating the midgut and pulling the amniotic cavity around the embryo, creating a tube-within-a-tube structure.</li>
                 </ul>
                 
-                <!-- MODULE 4 QUIZ -->
+                <!-- MODULE 4 HYBRID QUIZ -->
                 <div class="quiz-section">
                     <div class="quiz-section-title">🧠 Module 4 Practice Quiz: Test Your Understanding</div>
                     
+                    <div class="quiz-subsection-title">Part A: Interactive Quick Check (MCQs)</div>
+                    
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q1. Gastrulation converts the bilaminar disc into a trilaminar disc. Which layer is the direct cellular precursor to all three germ layers?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The hypoblast does not contribute to the definitive embryonic germ layers; it forms extraembryonic membranes.')">A) Hypoblast</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Pluripotent cells of the Epiblast undergo EMT and migrate through the primitive streak to construct the Ectoderm, Mesoderm, and Endoderm.')">B) Epiblast</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Extraembryonic mesoderm develops outside the embryo proper.')">C) Extraembryonic mesoderm</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The cytotrophoblast is a placental precursor lineage.')">D) Cytotrophoblast</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q2. Which tumor in newborns is derived from remnants of the primitive streak?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Choriocarcinoma is a tumor of trophoblastic cells.')">A) Choriocarcinoma</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Sacrococcygeal Teratoma is derived from persistent remnants of the primitive streak, containing derivatives from all three germ layers.')">B) Sacrococcygeal teratoma</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Medulloblastoma is a pediatric brain tumor not linked to the primitive streak.')">C) Medulloblastoma</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'A hydatidiform mole is an abnormal fertilization product of trophoblast tissues.')">D) Hydatidiform mole</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="quiz-subsection-title">Part B: Active Recall Flashcards</div>
+
                     <div class="quiz-item">
-                        <div class="quiz-question">Q1. What is Gastrulation and what marks its onset?</div>
+                        <div class="quiz-question">Q3. Describe the cellular mechanism of invagination during gastrulation (EMT).</div>
                         <div class="quiz-answer">
-                            <p><strong>Gastrulation</strong> is the embryological process during Week 3 by which the bilaminar embryonic disc is converted into a trilaminar disc composed of Ectoderm, Mesoderm, and Endoderm. It marks the onset of morphogenesis.</p>
-                            <p>Its onset is marked by the appearance of the <strong>Primitive Streak</strong> on the epiblast surface, particularly on the caudal end of the embryo, on Day 15.</p>
+                            <p>Invagination is driven by <strong>Epithelial-to-Mesenchymal Transition (EMT)</strong>. Epiblast cells migrating toward the primitive streak down-regulate cell adhesion molecules (such as E-cadherin), detach from their neighbors, flatten, change from a columnar to a flask-like shape, and slip through the primitive groove into the blastocoele space.</p>
                         </div>
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q2. Describe how the three germ layers are sequentially formed during gastrulation.</div>
+                        <div class="quiz-question">Q4. What are the key inductive roles of the Notochord?</div>
                         <div class="quiz-answer">
-                            <p>Epiblast cells migrate toward the primitive streak, undergo Epithelial-to-Mesenchymal Transition (EMT), and invaginate through the primitive streak:</p>
+                            <p>The <strong>Notochord</strong> functions as the primary signaling center in the early embryo:</p>
                             <ol>
-                                <li><strong>Endoderm:</strong> The first wave of invaginating cells displaces the hypoblast layer, forming the endoderm.</li>
-                                <li><strong>Mesoderm:</strong> The second wave of invaginating cells inserts between the epiblast and the newly formed endoderm, forming the mesoderm.</li>
-                                <li><strong>Ectoderm:</strong> The remaining epiblast cells that do not migrate then differentiate into the ectoderm.</li>
+                                <li>It induces the overlying ectoderm to thicken into the <strong>Neural Plate</strong>, starting neurulation.</li>
+                                <li>It establishes the midline axis and coordinates the patterning of the vertebral column (sclerotome).</li>
+                                <li>It establishes lateral left-right body asymmetry.</li>
                             </ol>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q3. What is a Sacrococcygeal Teratoma, and why does it contain diverse tissues?</div>
-                        <div class="quiz-answer">
-                            <p>A <strong>Sacrococcygeal Teratoma</strong> is a congenital tumor located at the sacrococcygeal region, representing the most common tumor in newborns.</p>
-                            <p>It contains diverse tissues (hair, muscle, bone, teeth, neural tissue) because it develops from **remnants of the primitive streak** that failed to regress at the end of Week 4. These primitive streak cells are pluripotent, retaining the capacity to differentiate into derivatives of all three embryonic germ layers.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q4. List three primary adult derivatives of each of the three germ layers.</div>
-                        <div class="quiz-answer">
-                            <ul>
-                                <li><strong>Ectoderm:</strong> Brain/spinal cord (CNS), Epidermis of skin, lens of eye.</li>
-                                <li><strong>Mesoderm:</strong> Cardiac muscle, skeleton/bones, kidneys/gonads.</li>
-                                <li><strong>Endoderm:</strong> Epithelial lining of the digestive tract, lining of the lungs/trachea, parenchyma of the liver/pancreas.</li>
-                            </ul>
                         </div>
                     </div>
 
@@ -1446,12 +1569,49 @@
                     <p><strong>Prevention:</strong> Daily maternal supplementation of <strong>Folic Acid (Vitamin B9)</strong> starting prior to conception drastically reduces the incidence of NTDs. Elevated levels of <strong>Alpha-Fetoprotein (AFP)</strong> in maternal serum and amniotic fluid indicate open NTDs.</p>
                 </div>
                 
-                <!-- MODULE 5 QUIZ -->
+                <!-- MODULE 5 HYBRID QUIZ -->
                 <div class="quiz-section">
                     <div class="quiz-section-title">🧠 Module 5 Practice Quiz: Test Your Understanding</div>
                     
+                    <div class="quiz-subsection-title">Part A: Interactive Quick Check (MCQs)</div>
+                    
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q1. Which embryonic structure is the precursor to the adult Ligamentum Arteriosum?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The Ductus Venosus bypasses the liver and transforms into the Ligamentum Venosum.')">A) Ductus Venosus</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The Left Umbilical Vein becomes the Ligamentum Teres Hepatis.')">B) Umbilical Vein</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! The Ductus Arteriosus, which shunts blood from the pulmonary trunk to the aorta in the fetus, closes at birth to form the Ligamentum Arteriosum.')">C) Ductus Arteriosus</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The Umbilical Arteries degenerate to form the Medial Umbilical Ligaments.')">D) Umbilical Artery</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q2. What causes the physical/mechanical closure of the Foramen Ovale immediately after birth?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'There is no muscle in the septum primum valve that actively contracts.')">A) Active muscle contraction of the valve flap</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Taking the first breath lowers pulmonary vascular resistance (dropping Right Atrium pressure) and increases pulmonary return (raising Left Atrium pressure), pushing the valve flap shut.')">B) Lower pulmonary resistance and increased left atrial pressure</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Bradykinin mediates the closure of the Ductus Arteriosus, not the Foramen Ovale.')">C) Release of bradykinin from lungs</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Prostaglandins keep the ductus arteriosus patent; they do not control the foramen ovale.')">D) Drop in maternal prostaglandins</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q3. The congenital failure of which pharyngeal pouches to develop results in DiGeorge Syndrome?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Pouches 1 and 2 form the middle ear cleft, auditory tube, palatine tonsils, and tonsillar fossa.')">A) 1st and 2nd pouches</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! DiGeorge syndrome arises from a microdeletion of 22q11.2, leading to abnormal development of the 3rd and 4th pharyngeal pouches.')">B) 3rd and 4th pouches</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Pouches 2 and 3 develop separately; this combination is incorrect.')">C) 2nd and 3rd pouches</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'The 5th pouch is transient and regresses.')">D) 4th and 5th pouches</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="quiz-subsection-title">Part B: Active Recall Flashcards</div>
+
                     <div class="quiz-item">
-                        <div class="quiz-question">Q1. Chronologically list the key septation boundaries of the atrial wall.</div>
+                        <div class="quiz-question">Q4. Chronologically list the key septation boundaries of the atrial wall.</div>
                         <div class="quiz-answer">
                             <ol>
                                 <li>The thin, sickle-shaped <strong>Septum Primum</strong> grows down from the roof toward the cushions, leaving a gap called the <strong>Ostium Primum</strong>.</li>
@@ -1463,32 +1623,9 @@
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q2. Identify the three fetal shunts and describe their exact anatomical remnants.</div>
+                        <div class="quiz-question">Q5. What is the clinical triad/tetrad of Tetralogy of Fallot, and what is its embryological cause?</div>
                         <div class="quiz-answer">
-                            <ol>
-                                <li><strong>Ductus Venosus:</strong> Bypasses the liver, connecting the umbilical vein to the IVC. Remnant: <strong>Ligamentum Venosum</strong>.</li>
-                                <li><strong>Foramen Ovale:</strong> Shunts oxygenated blood from the right atrium to the left atrium, bypassing the lungs. Remnant: <strong>Fossa Ovalis</strong>.</li>
-                                <li><strong>Ductus Arteriosus:</strong> Shunts blood from the pulmonary trunk to the aorta, bypassing the lungs. Remnant: <strong>Ligamentum Arteriosum</strong>.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q3. State the anatomical changes that trigger the closure of the Ductus Arteriosus.</div>
-                        <div class="quiz-answer">
-                            <p>Upon taking the first breath at birth, inflation of the lungs leads to:</p>
-                            <ol>
-                                <li>A dramatic rise in blood oxygen tension ($pO_2$).</li>
-                                <li>A sharp fall in circulating vasodilating <strong>Prostaglandins (PGE2)</strong> due to separation from the placenta and increased breakdown in the lungs.</li>
-                            </ol>
-                            <p>These two events trigger rapid constriction of the smooth muscle within the wall of the Ductus Arteriosus, causing functional closure within 10-15 hours, and subsequent anatomical fibrosis into the <strong>Ligamentum Arteriosum</strong> within weeks.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q4. What is the embryological basis and clinical tetrad of Tetralogy of Fallot?</div>
-                        <div class="quiz-answer">
-                            <p><strong>Embryological Basis:</strong> An unequal division of the conotruncal region caused by the anterior displacement of the aorticopulmonary (conotruncal) septum.</p>
+                            <p><strong>Embryological Cause:</strong> An unequal division of the conotruncal region caused by the anterior displacement of the aorticopulmonary (conotruncal) septum.</p>
                             <p><strong>Clinical Tetrad (Mnemonic PROV):</strong></p>
                             <ol>
                                 <li><strong>P:</strong> Pulmonary stenosis (narrowing of the right ventricular outflow tract).</li>
@@ -1500,46 +1637,13 @@
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q5. List the four stages of lung development and when respiration is first possible.</div>
-                        <div class="quiz-answer">
-                            <ol>
-                                <li><strong>Pseudoglandular Stage (Weeks 5-16):</strong> Branching to terminal bronchioles. Respiration is impossible.</li>
-                                <li><strong>Canalicular Stage (Weeks 16-26):</strong> Vascularization increases, respiratory bronchioles and alveolar ducts form. <strong>Respiration is first possible at the very end of this stage (week 25-26)</strong>.</li>
-                                <li><strong>Terminal Sac / Saccular Stage (Weeks 26 to Birth):</strong> Terminal sacs (primitive alveoli) form, lined by Type I & II pneumocytes (surfactant production).</li>
-                                <li><strong>Alveolar Stage (8 months to 8 years):</strong> Formation of mature, thin-walled alveoli.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q6. What are the derivatives of the 3rd and 4th pharyngeal pouches, and what happens in DiGeorge Syndrome?</div>
-                        <div class="quiz-answer">
-                            <ul>
-                                <li><strong>3rd Pouch:</strong> Inferior parathyroid glands and the thymus.</li>
-                                <li><strong>4th Pouch:</strong> Superior parathyroid glands and the ultimobranchial body (C-cells of the thyroid).</li>
-                            </ul>
-                            <p><strong>DiGeorge Syndrome (22q11.2 deletion):</strong> Failure of development of the 3rd and 4th pouches. This leads to **thymic aplasia** (T-cell immunodeficiency), **parathyroid hypoplasia** (severe hypocalcemia causing seizures), craniofacial anomalies, and cardiovascular outflow defects (like Tetralogy of Fallot).</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q7. What are the closure days for the cranial and caudal neuropores, and what clinical defects are linked to their failure to close?</div>
+                        <div class="quiz-question">Q6. What are the closure days for the cranial and caudal neuropores, and what clinical defects are linked to their failure to close?</div>
                         <div class="quiz-answer">
                             <ul>
                                 <li><strong>Cranial (Anterior) Neuropore:</strong> Closes on <strong>Day 25</strong>. Failure to close causes <strong>Anencephaly</strong> (exposure and degeneration of the brain, always fatal).</li>
                                 <li><strong>Caudal (Posterior) Neuropore:</strong> Closes on <strong>Day 27</strong>. Failure to close causes <strong>Spina Bifida</strong> (ranges from Spina Bifida Occulta to open Spina Bifida Cystica: Meningocele and Myelomeningocele).</li>
                             </ul>
                             <p><em>Folic Acid</em> supplementation before and during early pregnancy significantly prevents these Neural Tube Defects.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q8. Describe the dual germ layer origin of the skin.</div>
-                        <div class="quiz-answer">
-                            <ul>
-                                <li><strong>Epidermis:</strong> Developed from the **surface ectoderm**. It thickens and differentiates into stratified squamous epithelial layers, and receives melanocytes migrating from the **neural crest**.</li>
-                                <li><strong>Dermis:</strong> Developed from **mesodermal** origins, specifically the dermatomes of paraxial somites (for the back) and the somatic layer of lateral plate mesoderm (for the body wall and limbs).</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -1579,24 +1683,38 @@
                     </ul>
                 </div>
                 
-                <!-- MODULE 6 QUIZ -->
+                <!-- MODULE 6 HYBRID QUIZ -->
                 <div class="quiz-section">
                     <div class="quiz-section-title">🧠 Module 6 Practice Quiz: Test Your Understanding</div>
                     
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q1. Differentiate clearly between IVF, ICSI, GIFT, and ZIFT.</div>
-                        <div class="quiz-answer">
-                            <ul>
-                                <li><strong>IVF (In Vitro Fertilization):</strong> Fertilization occurs in a laboratory dish. Cleavage-stage embryos or blastocysts are then transferred into the <strong>uterus</strong>.</li>
-                                <li><strong>ICSI (Intracytoplasmic Sperm Injection):</strong> A single sperm is microinjected directly into the mature oocyte's cytoplasm in vitro. Highly effective for severe male infertility.</li>
-                                <li><strong>GIFT (Gamete Intrafallopian Transfer):</strong> Harvested unfertilized oocytes and washed sperm are mixed and introduced directly into the **Fallopian tube**. Fertilization occurs **in vivo** (naturally).</li>
-                                <li><strong>ZIFT (Zygote Intrafallopian Transfer):</strong> Fertilization occurs in vitro, and the resulting zygote is transferred into the **Fallopian tube** at the 1-cell stage.</li>
-                            </ul>
+                    <div class="quiz-subsection-title">Part A: Interactive Quick Check (MCQs)</div>
+                    
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q1. Which reproductive technique involves introducing unfertilized gametes directly into the ampulla of the Fallopian tube?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'In IVF, fertilization occurs in a laboratory dish before uterine transfer.')">A) IVF</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'In ICSI, a single sperm is injected into the cytoplasm of the egg.')">B) ICSI</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! GIFT stands for Gamete Intrafallopian Transfer, where unfertilized egg and sperm are introduced directly into the tube so fertilization can occur naturally.')">C) GIFT</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'In ZIFT, the zygote (1-cell fertilized embryo) is placed in the Fallopian tube.')">D) ZIFT</button>
                         </div>
+                        <div class="mcq-feedback"></div>
                     </div>
 
+                    <div class="mcq-container">
+                        <div class="mcq-question-text">Q2. Maternal binge-drinking during Embryonic Week 3 disrupts SHH signaling in the prechordal plate, causing which defect?</div>
+                        <div class="mcq-options">
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Anencephaly is a neural tube defect caused by failure of anterior neuropore closure.')">A) Anencephaly</button>
+                            <button class="mcq-option" data-correct="true" onclick="selectMCQOption(this, true, 'Correct! Alcohol exposure during gastrulation (week 3) kills midline cells, failing to divide the prosencephalon, leading to Holoprosencephaly.')">B) Holoprosencephaly</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Spina bifida occulta is a lower spinal neural tube closure defect.')">C) Spina Bifida Occulta</button>
+                            <button class="mcq-option" onclick="selectMCQOption(this, false, 'Tetralogy of Fallot is a cardiovascular septum defect.')">D) Tetralogy of Fallot</button>
+                        </div>
+                        <div class="mcq-feedback"></div>
+                    </div>
+
+                    <div class="quiz-subsection-title">Part B: Active Recall Flashcards</div>
+
                     <div class="quiz-item">
-                        <div class="quiz-question">Q2. What is the "All-or-None" law of teratogenicity during Weeks 1-2?</div>
+                        <div class="quiz-question">Q3. What is the "All-or-None" law of teratogenicity during Weeks 1-2?</div>
                         <div class="quiz-answer">
                             <p>The <strong>"All-or-None" law</strong> applies to the first two weeks of development post-fertilization (prior to gastrulation). At this stage, the embryonic cells are highly pluripotent/totipotent.</p>
                             <p>A teratogenic insult during this period either:
@@ -1609,18 +1727,10 @@
                     </div>
 
                     <div class="quiz-item">
-                        <div class="quiz-question">Q3. Why are weeks 3-8 post-fertilization considered the most critical embryonic window?</div>
+                        <div class="quiz-question">Q4. Why are weeks 3-8 post-fertilization considered the most critical embryonic window?</div>
                         <div class="quiz-answer">
-                            <p>Weeks 3-8 represent the period of **gastrulation** and **organogenesis** (rapid formation of all major organ systems from the three germ layers). Cells are undergoing complex migration, signaling, and differentiation.</p>
+                            <p>Weeks 3-8 represent the period of <strong>gastrulation</strong> and <strong>organogenesis</strong> (rapid formation of all major organ systems from the three germ layers). Cells are undergoing complex migration, signaling, and differentiation.</p>
                             <p>Because cell fates are being locked in and structural boundaries are forming, any teratogenic exposure (drugs, alcohol, radiation, viruses) during this period causes severe, permanent, and major structural congenital anomalies.</p>
-                        </div>
-                    </div>
-
-                    <div class="quiz-item">
-                        <div class="quiz-question">Q4. What is the embryological link between binge-drinking and Holoprosencephaly (HPE)?</div>
-                        <div class="quiz-answer">
-                            <p>Binge-drinking during <strong>Embryonic Week 3 (during gastrulation)</strong> is highly toxic to midline cells in the germ disc. It kills cells in the prechordal plate, which acts as the primary organizer of the forebrain.</p>
-                            <p>This cellular destruction disrupts the <strong>Sonic Hedgehog (SHH)</strong> gradient, leading to **Holoprosencephaly** (HPE)—the failure of the forebrain (prosencephalon) to divide into right and left cerebral hemispheres, resulting in severe brain anomalies and cyclopia/midline facial defects.</p>
                         </div>
                     </div>
 
@@ -1861,7 +1971,7 @@
 
     </div>
 
-    <!-- JavaScript to Handle Tab Switching and Quiz Collapse -->
+    <!-- JavaScript to Handle Tab Switching, Quiz Collapse and MCQ Selection -->
     <script>
         function switchTab(tabId) {
             // Hide all tab content
@@ -1888,6 +1998,44 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Handle MCQ Option Selection
+        function selectMCQOption(button, isCorrect, explanationText) {
+            const parent = button.parentElement;
+            
+            // Check if already answered
+            if (parent.classList.contains('answered')) return;
+            parent.classList.add('answered');
+            
+            // Highlight all buttons appropriately
+            const buttons = parent.querySelectorAll('.mcq-option');
+            buttons.forEach(btn => {
+                btn.style.pointerEvents = 'none'; // Disable click on other buttons
+                if (btn === button) {
+                    if (isCorrect) {
+                        btn.classList.add('correct');
+                    } else {
+                        btn.classList.add('incorrect');
+                    }
+                } else {
+                    // Highlight the actual correct answer in green even if user guessed wrong
+                    if (btn.getAttribute('data-correct') === 'true') {
+                        btn.classList.add('correct');
+                    }
+                }
+            });
+            
+            // Show feedback
+            const feedbackDiv = parent.nextElementSibling;
+            feedbackDiv.style.display = 'block';
+            if (isCorrect) {
+                feedbackDiv.className = 'mcq-feedback correct';
+                feedbackDiv.innerHTML = '<strong>Correct! 🎉</strong> ' + explanationText;
+            } else {
+                feedbackDiv.className = 'mcq-feedback incorrect';
+                feedbackDiv.innerHTML = '<strong>Incorrect. ❌</strong> ' + explanationText;
+            }
+        }
+
         // Handle Quiz Accordion click
         document.addEventListener('DOMContentLoaded', () => {
             const quizQuestions = document.querySelectorAll('.quiz-question');
@@ -1899,5 +2047,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a14162055e71c3e3',t:'MTc4Mjg2NjY3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
